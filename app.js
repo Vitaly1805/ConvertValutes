@@ -18,8 +18,7 @@ app.get("/", (request, response) => {
         if (error) console.log(error);
         else {
             let count = 1;
-
-            model = JSON.parse(data);
+            let obj = {};
 
             model.Valute["RUS"] = {
                 "ID": "R0",
@@ -31,6 +30,12 @@ app.get("/", (request, response) => {
                 "Previous": 1
             };
 
+            obj = JSON.parse(data);
+
+            for (const key in obj.Valute) {
+                model.Valute[key] = obj.Valute[key];
+            }
+
             for (const key in model.Valute) {
                 model.Valute[key].Count = count;
 
@@ -41,6 +46,8 @@ app.get("/", (request, response) => {
 
                 count++;
             }
+
+
         }
 
         response.render("main", model);
