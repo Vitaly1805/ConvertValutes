@@ -17,6 +17,8 @@ app.get("/", (request, response) => {
 
         if (error) console.log(error);
         else {
+            let count = 1;
+
             model = JSON.parse(data);
 
             model.Valute["RUS"] = {
@@ -30,10 +32,13 @@ app.get("/", (request, response) => {
             };
 
             for (const key in model.Valute) {
+                model.Valute[key].Count = count;
                 const element = model.Valute[key];
 
                 element.Value = element.Value / element.Nominal;
                 element.DeValue = 1 / element.Value;
+
+                count++;
             }
         }
 
