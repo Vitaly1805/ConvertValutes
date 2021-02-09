@@ -17,7 +17,7 @@ app.get("/", (request, response) => {
 
         if (error) console.log(error);
         else {
-            let count = 1;
+            let number = 1;
             let obj = {};
 
             model.Valute["RUS"] = {
@@ -37,17 +37,15 @@ app.get("/", (request, response) => {
             }
 
             for (const key in model.Valute) {
-                model.Valute[key].Count = count;
+                model.Valute[key].Number = number;
 
                 const element = model.Valute[key];
 
                 element.Value = (element.Value / element.Nominal).toFixed(3);
                 element.DeValue = (1 / element.Value).toFixed(3);
 
-                count++;
+                number++;
             }
-
-
         }
 
         response.render("main", model);

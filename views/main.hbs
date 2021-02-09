@@ -36,7 +36,7 @@
         <tbody>
             {{#each Valute}}
             <tr>
-                <td>{{Count}}</td>
+                <td>{{Number}}</td>
                 <td>{{Name}}</td>
                 <td>{{CharCode}}</td>
                 <td>{{Value}}</td>
@@ -56,9 +56,9 @@
         const rightText = document.getElementById("right-text");
 
         if (obj == leftValute || obj == leftText) {
-            rightText.value = leftText.value * leftValute.value / rightValute.value;
+            rightText.value = (leftText.value * leftValute.value / rightValute.value).toFixed(3);
         } else {
-            leftText.value = rightText.value * rightValute.value / leftValute.value;
+            leftText.value = rightText.value * rightValute.value / leftValute.value.toFixed(3);
         }
     }
 </script>
